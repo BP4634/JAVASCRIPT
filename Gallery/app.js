@@ -16,12 +16,12 @@ const nature = getElement('.nature')
 const city = getElement('.city')
 const picsNature = nature.querySelectorAll('.img')
 const picsCity = city.querySelectorAll('.img')
-modalImg = modal.querySelector('.modal-images')
+const modalImg = modal.querySelector('.modal-images')
 const closeBtn = modal.querySelector('.close-btn')
 const prevBtn = modal.querySelector('.prev-btn')
 const nextBtn = modal.querySelector('.next-btn')
 
-picsNature.forEach((element,index) => {
+picsNature.forEach((element) => {
   element.addEventListener('click', () => {
 
     return select(picsNature, element)
@@ -31,7 +31,7 @@ picsNature.forEach((element,index) => {
 });
 
 
-picsCity.forEach((element,index) => {
+picsCity.forEach((element) => {
   element.addEventListener('click', () => {
 
     return select(picsCity, element)
@@ -86,7 +86,7 @@ closeBtn.addEventListener('click',() => {
 })
 
 
-nextBtn.addEventListener('click', (item) => {
+nextBtn.addEventListener('click', () => {
 
   let next = 0
 
@@ -130,7 +130,7 @@ nextBtn.addEventListener('click', (item) => {
 
 
 
-prevBtn.addEventListener('click', (item) => {
+prevBtn.addEventListener('click', () => {
 
   let prev = 0
 
