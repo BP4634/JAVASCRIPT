@@ -16,63 +16,158 @@ const nature = getElement('.nature')
 const city = getElement('.city')
 const picsNature = nature.querySelectorAll('.img')
 const picsCity = city.querySelectorAll('.img')
-modalImages = modal.querySelectorAll('.modal-img')
-modalImg = modal.querySelector('.modal-images')
+const modalImg = modal.querySelector('.modal-images')
 const closeBtn = modal.querySelector('.close-btn')
+const prevBtn = modal.querySelector('.prev-btn')
+const nextBtn = modal.querySelector('.next-btn')
 
 picsNature.forEach((element) => {
   element.addEventListener('click', () => {
-    mainImg.src = element.src
-    
-    imgName.innerHTML = element.title
-    modalImg.innerHTML = ''
-    picsNature.forEach(e => {
-      e.classList.add('modal-img')
-      modalImg.appendChild(e)
-      if(e === element) {
-        picsNature.forEach(e => e.classList.remove('selected'))
-        e.classList.add('selected')
-      }
-      
-    })
 
-    modal.classList.add('open')
+    return select(picsNature, element)
+
   })
+
 });
 
 
 picsCity.forEach((element) => {
   element.addEventListener('click', () => {
-    mainImg.src = element.src
+
+    return select(picsCity, element)
+
+  })
+})
+
+
+const select = (arr, element) => {
+
+  mainImg.src = element.src
     
     imgName.innerHTML = element.title
     modalImg.innerHTML = ''
-    picsCity.forEach(e => {
+    arr.forEach(e => {
       e.classList.add('modal-img')
       modalImg.appendChild(e)
       if(e === element) {
-        picsCity.forEach(e => e.classList.remove('selected'))
+        arr.forEach(e => e.classList.remove('selected'))
         e.classList.add('selected')
       }
       
     })
 
     modal.classList.add('open')
-  })
-});
 
+}
 
 
 closeBtn.addEventListener('click',() => {
   modal.classList.remove('open')
-  picsNature.forEach(e => {
-    nature.appendChild(e)
-    e.classList.remove('modal-img')
-  })
-  picsCity.forEach(e => {
-    city.appendChild(e)
-    e.classList.remove('modal-img')
+
+  sections.forEach((element, index) => {
+    element.innerHTML = ''
+
+    if(index === 0) {
+      picsNature.forEach(e => {
+        nature.appendChild(e)
+        e.classList.remove('modal-img')
+
+      
+      })
+    } 
+
+    if(index === 1) {
+      picsCity.forEach(e => {
+        city.appendChild(e)
+        e.classList.remove('modal-img')
+      })
+    }
+  }) 
+})
+
+
+nextBtn.addEventListener('click', () => {
+
+  let next = 0
+
+  picsNature.forEach((e, index) => {
+        
+    if(e.classList.contains('selected') && e.src === mainImg.src) {
+      next = index
+      e.classList.remove('selected')
+      
+      next === picsNature.length-1 ? next = 0 : next++ 
+
+      mainImg.src = picsNature[next].src
+      imgName.innerHTML = picsNature[next].title
+      
+    }
+    
   })
   
+  picsNature[next].classList.add('selected')
+
+
+  picsCity.forEach((e, index) => {
+    
+    if(e.classList.contains('selected') && e.src === mainImg.src) {
+      next = index
+      e.classList.remove('selected')
+      
+      next === picsCity.length-1 ? next = 0 : next++ 
+
+      mainImg.src = picsCity[next].src
+      imgName.innerHTML = picsCity[next].title
+      
+    }
+    
+  })
+  
+  picsCity[next].classList.add('selected')
+    
+  
+})
+
+
+
+prevBtn.addEventListener('click', () => {
+
+  let prev = 0
+
+  picsNature.forEach((e, index) => {
+        
+    if(e.classList.contains('selected') && e.src === mainImg.src) {
+      prev = index
+      e.classList.remove('selected')
+      
+      prev === 0 ? prev = picsNature.length-1 : prev-- 
+
+      mainImg.src = picsNature[prev].src
+      imgName.innerHTML = picsNature[prev].title
+      
+    }
+    
+  })
+  
+  picsNature[prev].classList.add('selected')
+
+
+  picsCity.forEach((e, index) => {
+    
+    if(e.classList.contains('selected') && e.src === mainImg.src) {
+      prev = index
+      e.classList.remove('selected')
+      
+      prev === 0 ? prev = picsCity.length-1 : prev-- 
+
+      mainImg.src = picsCity[prev].src
+      imgName.innerHTML = picsCity[prev].title
+      
+    }
+    
+  })
+  
+  picsCity[prev].classList.add('selected')
+    
   
 })
