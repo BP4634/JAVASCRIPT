@@ -34,7 +34,7 @@ const elements = articles.map((el) => {
     tempDate.innerHTML = moment(el.date).format('MMMM Do, YYYY')
 
     let tempTime = document.createElement('span')
-    tempTime.innerHTML = `${el.length} min`
+    tempTime.innerHTML = `${el.length} min read`
 
     let tempContent = document.createElement('p')
     tempContent.innerHTML = el.snippet
