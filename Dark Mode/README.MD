@@ -11,7 +11,7 @@
     - article.post
       - h2 'post title'
       - div.post-info
-        - span 'date'
+        - span 'date' 
         - span 'read time'
       - p 'content'
 

@@ -19,7 +19,7 @@ const articles = [
     date: new Date(2018, 7, 11),
     length: 5,
     snippet: `Direct trade shabby chic four dollar toast, tilde actually try-hard bicycle rights aesthetic forage. Meditation keytar asymmetrical tacos artisan truffaut. Pabst jean shorts roof party scenester.`,
-  },
+  }, 
   {
     id: 4,
     title: 'what are the react team principles',
